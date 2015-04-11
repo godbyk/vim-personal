@@ -162,6 +162,16 @@ function! s:f.returnSkeletonsFromPrototypes(...)
     return protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({ 'includeNS' : 0})
 endfunction
 
+function! s:f.RyanHeaderSymbol(...) "{{{
+  let h = expand('%:t')
+  let h = substitute(h, '\.', '_', 'g') " replace . with _
+  let guid = system("uuidgen")
+  let guid = substitute(guid, '.', '\U\0', 'g') " make all characters upper case
+  let guid = substitute(guid, '\n', '', 'g') " strip newline
+  let guid = substitute(guid, '-', '_', 'g') " replace . with _
+  return 'INCLUDED_'.h.'_GUID_'.guid
+endfunction "}}}
+
 " Begin the XPT snippets
 XPTemplateDef
 
@@ -616,6 +626,8 @@ XPT noop hint=Comment\ 'do\ nothing'
 
 ..XPT
 
+
+
 XPT once wrap=cursor	" #ifndef .. #define ..
 XSET symbol=headerSymbol()
 XSET symbol|post=UpperCase(V())
@@ -673,6 +685,46 @@ EULER_SOLVER
 }
 
 EULER_MAIN(`ProblemNumber^);
+
+"
+" Sensics code
+"
+
+XPT sensics_header hint=Sensics\ header\ file
+/** @file
+    @brief Header
+
+    @date `year()^
+
+    @author
+    Sensics, Inc.
+    <http://sensics.com>
+
+*/
+
+// Copyright `year()^ Sensics, Inc.
+//
+// All rights reserved.
+//
+// (Final version intended to be licensed under
+// the Apache License, Version 2.0)
+
+XSET symbol=RyanHeaderSymbol()
+#ifndef `symbol^
+#define `symbol^
+
+// Internal Includes
+// - none
+
+// Library/third-party includes
+// - none
+
+// Standard includes
+// - none
+
+`cursor^
+
+#endif // `symbol^
 
 ..XPT
 
