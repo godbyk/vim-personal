@@ -651,4 +651,28 @@ XPT main hint=main\ (argc,\ argv)
 }
 ..XPT
 
+XPT euler hint=Project\ Euler\ program
+//
+// `getNamespaceFilename()^
+//
+// Project Euler - Problem `ProblemNumber^
+//
+// `Title^
+//
+// `Description^
+//
+// Author:
+//   Kevin Godby <kevin@godby.org>
+
+#include <util/ProjectEuler.h>
+#include <util/bigmath.h>
+
+EULER_SOLVER
+{
+    setSolution("");
+}
+
+EULER_MAIN(`ProblemNumber^);
+
+..XPT
 
