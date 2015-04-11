@@ -168,6 +168,7 @@ function! s:f.RyanHeaderSymbol(...) "{{{
   let guid = system("uuidgen")
   let guid = substitute(guid, '.', '\U\0', 'g') " make all characters upper case
   let guid = substitute(guid, '\n', '', 'g') " strip newline
+  let guid = substitute(guid, '-', '_', 'g') " replace . with _
   return 'INCLUDED_'.h.'_GUID_'.guid
 endfunction "}}}
 
@@ -673,8 +674,7 @@ XPT sensics_header hint=Sensics\ header\ file
     @date `year()^
 
     @author
-    `$author^
-    <`$email^>
+    Sensics, Inc.
     <http://sensics.com>
 
 */
