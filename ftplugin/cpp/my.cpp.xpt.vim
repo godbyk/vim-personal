@@ -639,7 +639,7 @@ XSET symbol|post=UpperCase(V())
 
 ..XPT
 
-XPT kgcopy hint=Kevin' copyright\ notice
+XPT kgcopy hint=Kevin's\ copyright\ notice
 //
 // `getNamespaceFilename()^
 //
